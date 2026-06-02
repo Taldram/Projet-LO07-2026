@@ -25,7 +25,7 @@ switch ($action) {
 
  // Tache par défaut
  default:
-  $action = "caveAccueil";
+  $action = "Accueil";
   ControllerVin::$action();
 }
 ?>

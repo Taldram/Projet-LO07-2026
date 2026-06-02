@@ -8,7 +8,7 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 
 ### Les fonctions de l’administrateur
 
-- [ ] La barre des menus @Pierrelncls
+- [x] La barre des menus @Pierrelncls
 - [ ] Liste des utilisateurs @Pierrelncls
 - [ ] Ajout d’un conducteur @Pierrelncls
 - [ ] Ajout d’un passager @Pierrelncls
