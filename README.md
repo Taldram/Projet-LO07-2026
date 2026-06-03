@@ -14,7 +14,7 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 - [ ] Ajout d’un passager @Pierrelncls
 - [ ] Liste des véhicules @Taldram
 - [ ] Ajout d’un véhicule @Taldram
-- [ ] Liste des villes @Taldram
+- [x] Liste des villes @Taldram
 - [ ] Ajout d’une ville @Taldram
 
 ### Autre

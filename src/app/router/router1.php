@@ -21,6 +21,11 @@ switch ($action) {
     case "villeCreated" :
         ControllerVille::$action();
         break;
+
+    // Pour l'instant dans ControllerVille, à changer
+        default:
+        $action = "accueil";
+        ControllerVille::$action();
 }
 ?>
 <!-- ----- Fin Router1 -->
