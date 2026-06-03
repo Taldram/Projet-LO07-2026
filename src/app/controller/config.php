@@ -14,7 +14,7 @@ $username = 'baudycam';
 $password = '7wZnh3kI';
 
 if (!defined('LOCAL')) {
-    define('LOCAL', TRUE);
+    define('LOCAL', FALSE);
 }
 
 if (LOCAL) {
