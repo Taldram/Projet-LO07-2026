@@ -3,6 +3,7 @@
 <?php
 
 require ('../controller/ControllerVille.php');
+require ('../controller/ControllerVehicule.php');
 
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
@@ -20,6 +21,11 @@ switch ($action) {
     case "villeCreate" :
     case "villeCreated" :
         ControllerVille::$action();
+        break;
+    case "vehiculeReadAll" :
+    case "vehiculeCreate" :
+    case "vehiculeCreated" :
+        ControllerVehicule::$action();
         break;
 
     // Pour l'instant dans ControllerVille, à changer
