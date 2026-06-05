@@ -14,7 +14,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
             echo ("<h3>La nouvelle ville a été ajouté </h3>");
             echo ("<ul>");
             echo ("<li>id = " . $results . "</li>");
-            echo ("<li>cru = " . $_GET['nom'] . "</li>");
+            echo ("<li>nom = " . $_GET['nom'] . "</li>");
             echo ("</ul>");
         }
 
