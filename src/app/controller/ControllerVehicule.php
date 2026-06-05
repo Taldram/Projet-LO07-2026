@@ -15,6 +15,29 @@ class ControllerVehicule {
         require($vue);
     }
 
+    public static function vehiculeCreate()
+    {
+        // ----- Construction chemin de la vue
+        include 'config.php';
+        $vue = $root . '/app/view/vehicule/viewInsert.php';
+        require($vue);
+    }
+
+    public static function vehiculeCreated()
+    {
+        // ajouter une validation des informations du formulaire
+        $results = ModelVehicule::insert(
+            htmlspecialchars($_GET['nom']));
+        // ----- Construction chemin de la vue
+        include 'config.php';
+        if ($results == -1) {
+            $vue = $root . '/app/view/vehicule/viewNotInserted.php'; 
+        } else {
+            $vue = $root . '/app/view/vehicule/viewInserted.php'; 
+        }
+        require ($vue);
+    }
+
 }
 
 ?>
