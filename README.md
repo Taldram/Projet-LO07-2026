@@ -17,9 +17,21 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 - [x] Liste des villes @Taldram
 - [x] Ajout d’une ville @Taldram
 
+### Les fonctions d’un conducteur
+
+- [ ] Liste de mes véhicules
+- [ ] Liste de tous mes trajets (actifs et passifs)
+- [ ] Ajout d’un trajet
+- [ ] Liste des passagers de l’un de mes trajets actifs
+- [ ] Clôturer un trajet actif
+
+### Les fonctions d’un passager
+
+- [ ] Liste de mes réservations
+- [ ] Réservation d’un trajet actif
+
 ### Autre
-- [ ] Les fonctions d’un conducteur
-- [ ] Les fonctions d’un passager
-- [ ] Les innovations proposées
-- [ ] Les fonctions de l’examinateur
-- [ ] Les fonctions de connexion
+
+- [ ] Les innovations proposées @Taldram
+- [ ] Les fonctions de l’examinateur @Taldram
+- [ ] Les fonctions de connexion @Pierrelncls
