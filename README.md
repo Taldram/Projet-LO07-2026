@@ -13,7 +13,7 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 - [x] Ajout d’un conducteur @Pierrelncls
 - [x] Ajout d’un passager @Pierrelncls
 - [x] Liste des véhicules @Taldram
-- [ ] Ajout d’un véhicule @Taldram
+- [x] Ajout d’un véhicule @Taldram
 - [x] Liste des villes @Taldram
 - [x] Ajout d’une ville @Taldram
 

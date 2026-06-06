@@ -54,10 +54,22 @@ class ModelVehicule
         }
     }
 
-    public static function insert($nom)
+    public static function insert($marque, $modele, $annee, $immatriculation, $proprietaire)
     {
         try {
             $database = Model::getInstance();
+
+            //verif immat
+            $queryCheck = "SELECT id FROM vehicule WHERE immatriculation = :immatriculation";
+            $statementCheck = $database->prepare($queryCheck);
+            $statementCheck->execute([
+                'immatriculation' => $immatriculation
+            ]);
+
+            $tuple = $statementCheck->fetch();
+            if ($tuple) {
+                return -1;
+            }
 
             // recherche de la valeur de la clé = max(id) + 1
             $query = "select max(id) from vehicule";
@@ -67,11 +79,16 @@ class ModelVehicule
             $id++;
 
             // ajout d'un nouveau tuple;
-            $query = "insert into vehicule value (:id, :nom)";
+            $query = "insert into vehicule (id, marque, modele, annee, immatriculation, proprietaire_id)
+            values (:id, :marque, :modele, :annee, :immatriculation, :proprietaire)";
             $statement = $database->prepare($query);
             $statement->execute([
                 'id' => $id,
-                'nom' => $nom
+                'marque' => $marque,
+                'modele' => $modele,
+                'annee' => $annee,
+                'immatriculation' => $immatriculation,
+                'proprietaire' => $proprietaire
             ]);
             return $id;
         } catch (PDOException $e) {

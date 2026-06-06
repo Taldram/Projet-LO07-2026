@@ -1,6 +1,7 @@
 <?php
 
 require_once "../model/ModelVehicule.php";
+require_once "../model/ModelUtilisateur.php";
 
 class ControllerVehicule {
 
@@ -17,6 +18,8 @@ class ControllerVehicule {
 
     public static function vehiculeCreate()
     {
+        $conducteurs = ModelUtilisateur::getConducteurs();
+
         // ----- Construction chemin de la vue
         include 'config.php';
         $vue = $root . '/app/view/vehicule/viewInsert.php';
@@ -25,9 +28,17 @@ class ControllerVehicule {
 
     public static function vehiculeCreated()
     {
-        // ajouter une validation des informations du formulaire
+        $annee = intval($_GET['annee']);
+        if ($annee < 1900 || $annee > 2026){
+            $results = -1;
+        } else {
         $results = ModelVehicule::insert(
-            htmlspecialchars($_GET['nom']));
+            htmlspecialchars($_GET['marque']),
+            htmlspecialchars($_GET['modele']),
+            htmlspecialchars($_GET['annee']),
+            htmlspecialchars($_GET['immatriculation']),
+            htmlspecialchars($_GET['proprietaire']));
+        }
         // ----- Construction chemin de la vue
         include 'config.php';
         if ($results == -1) {

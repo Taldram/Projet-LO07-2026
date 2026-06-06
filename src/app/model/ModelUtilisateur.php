@@ -52,8 +52,26 @@ class ModelUtilisateur
     {
         try {
             $database = Model::getInstance();
-            $query = "select id, nom, prenom, role, login, password, solde
+            $query = "select *
                       from utilisateur
+                      order by id";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelUtilisateur");
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    public static function getConducteurs()
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select *
+                      from utilisateur
+                      where role = 'conducteur'
                       order by id";
             $statement = $database->prepare($query);
             $statement->execute();
