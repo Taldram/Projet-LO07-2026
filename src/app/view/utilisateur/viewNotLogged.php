@@ -8,9 +8,9 @@
         ?>
 
         <div class="alert alert-danger mt-4">
-            <h2>Erreur d'insertion</h2>
+            <h2>Erreur de connexion</h2>
             <hr>
-            <p>Problème d'insertion de l'utilisateur.</p>
+            <p>Problème de connexion, vérifiez vos identifiants.</p>
             
         </div>
     </div>
