@@ -32,6 +32,6 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 
 ### Autre
 
-- [ ] Les innovations proposées @Taldram
+- [x] Les innovations proposées @Taldram
 - [ ] Les fonctions de l’examinateur @Taldram
 - [ ] Les fonctions de connexion @Pierrelncls

@@ -122,7 +122,7 @@ class ModelUtilisateur
     {
         try {
             $database = Model::getInstance();
-            $query = "select id, nom, prenom, role, login, password, solde
+            $query = "select *
                       from utilisateur
                       where login = :login AND password = :password";
             $statement = $database->prepare($query);

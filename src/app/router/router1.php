@@ -1,4 +1,3 @@
-
 <!-- ----- debut Router1 -->
 <?php
 session_start();
@@ -10,9 +9,10 @@ if (!isset($_SESSION['login_id'])) {
 }
 
 
-require ('../controller/ControllerVille.php');
-require ('../controller/ControllerVehicule.php');
-require ('../controller/ControllerUtilisateur.php');
+require('../controller/ControllerVille.php');
+require('../controller/ControllerVehicule.php');
+require('../controller/ControllerUtilisateur.php');
+require('../controller/ControllerBlaBla.php');
 
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
@@ -28,32 +28,35 @@ $action = htmlspecialchars($action);
 
 // --- Liste des méthodes autorisées
 switch ($action) {
-    case "villeReadAll" :
-    case "villeCreate" :
-    case "villeCreated" :
+    case "villeReadAll":
+    case "villeCreate":
+    case "villeCreated":
         ControllerVille::$action();
         break;
-    case "vehiculeReadAll" :
-    case "vehiculeCreate" :
-    case "vehiculeCreated" :
+    case "vehiculeReadAll":
+    case "vehiculeCreate":
+    case "vehiculeCreated":
         ControllerVehicule::$action();
         break;
 
-    case "utilisateurReadAll" :
-    case "passagerCreate" :
-    case "conducteurCreate" :
-    case "utilisateurCreated" :
-    case "utilisateurLogin" :
-    case "utilisateurLoginVerif" :
-    case "utilisateurLogout" :
+    case "utilisateurReadAll":
+    case "passagerCreate":
+    case "conducteurCreate":
+    case "utilisateurCreated":
+    case "utilisateurLogin":
+    case "utilisateurLoginVerif":
+    case "utilisateurLogout":
         ControllerUtilisateur::$action();
         break;
 
-    // Pour l'instant dans ControllerVille, à changer
-        default:
+    case "innovationOriginale":
+    case "innovationMVC":
+        ControllerBlaBla::$action();
+        break;
+        
+    default:
         $action = "accueil";
-        ControllerVille::$action();
+        ControllerBlaBla::$action();
 }
 ?>
 <!-- ----- Fin Router1 -->
-
