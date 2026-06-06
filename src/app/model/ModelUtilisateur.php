@@ -124,7 +124,7 @@ class ModelUtilisateur
             $database = Model::getInstance();
             $query = "select *
                       from utilisateur
-                      where login = :login AND password = :password";
+                      where BINARY login = :login AND BINARY password = :password";
             $statement = $database->prepare($query);
             $statement->execute([
                 'login' => $login,
