@@ -22,7 +22,6 @@ $query_string = $_SERVER['QUERY_STRING'];
 parse_str($query_string, $param);
 
 // --- $action contient le nom de la méthode statique recherchée
-$action = htmlspecialchars($param["action"]);
 $action = isset($_POST['action']) ? $_POST['action'] : (isset($_GET['action']) ? $_GET['action'] : '');
 $action = htmlspecialchars($action);
 
