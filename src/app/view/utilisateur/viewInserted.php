@@ -17,8 +17,6 @@ require($root . '/app/view/fragment/fragmentHeader.html');
             echo ("<li>nom = " . $_GET['nom'] . "</li>");
             echo ("<li>prenom = " . $_GET['prenom'] . "</li>");
             echo ("<li>role = " . $_GET['role'] . "</li>");
-            echo ("<li>login = " . $_GET['login'] . "</li>");
-            echo ("<li>password = " . $_GET['password'] . "</li>");
             echo ("<li>solde = " . $_GET['solde'] . "</li>");
             echo ("</ul>");
         }

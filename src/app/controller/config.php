@@ -14,12 +14,12 @@ $username = 'baudycam';
 $password = '7wZnh3kI';
 
 if (!defined('LOCAL')) {
-    define('LOCAL', FALSE);
+    define('LOCAL', TRUE);
 }
 
 if (LOCAL) {
     // Configuration de la base de données sur localhost
-    $dsn = 'mysql:dbname=CAVE;host=localhost;charset=utf8';
+    $dsn = 'mysql:dbname=projet;host=localhost;charset=utf8';
     $username = 'root';
     $password = 'root';
 }

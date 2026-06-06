@@ -30,7 +30,8 @@ switch ($action) {
         break;
 
     case "utilisateurReadAll" :
-    case "utilisateurCreate" :
+    case "passagerCreate" :
+    case "conducteurCreate" :
     case "utilisateurCreated" :
         ControllerUtilisateur::$action();
         break;

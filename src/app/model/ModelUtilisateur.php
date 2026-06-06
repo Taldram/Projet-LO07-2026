@@ -54,7 +54,7 @@ class ModelUtilisateur
             $database = Model::getInstance();
             $query = "select id, nom, prenom, role, login, password, solde
                       from utilisateur
-                      order by nom";
+                      order by id";
             $statement = $database->prepare($query);
             $statement->execute();
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelUtilisateur");
@@ -62,6 +62,41 @@ class ModelUtilisateur
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return NULL;
+        }
+    }
+
+    public static function insert($nom, $prenom, $role, $solde)
+    {
+        try {
+            $database = Model::getInstance();
+
+            // recherche de la valeur de la clé = max(id) + 1
+            $query = "select max(id) from utilisateur";
+            $statement = $database->query($query);
+            $tuple = $statement->fetch();
+            $id = $tuple['0'];
+            $id++;
+
+            $login = strtolower(trim($prenom . '.' . $nom));
+            $password = 'secret';
+
+            // ajout d'un nouveau tuple;
+            $query = "insert into utilisateur (id, nom, prenom, role, login, password, solde)
+                      values (:id, :nom, :prenom, :role, :login, :password, :solde)";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id,
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'role' => $role,
+                'login' => $login,
+                'password' => $password,
+                'solde' => $solde
+            ]);
+            return $id;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
         }
     }
 }

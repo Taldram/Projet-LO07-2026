@@ -10,8 +10,8 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 
 - [x] La barre des menus @Pierrelncls
 - [x] Liste des utilisateurs @Pierrelncls
-- [ ] Ajout d’un conducteur @Pierrelncls
-- [ ] Ajout d’un passager @Pierrelncls
+- [x] Ajout d’un conducteur @Pierrelncls
+- [x] Ajout d’un passager @Pierrelncls
 - [x] Liste des véhicules @Taldram
 - [ ] Ajout d’un véhicule @Taldram
 - [x] Liste des villes @Taldram
