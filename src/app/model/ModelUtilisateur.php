@@ -95,7 +95,7 @@ class ModelUtilisateur
             $id = $tuple['0'];
             $id++;
 
-            $login = strtolower(trim($prenom . '' . $nom));
+            $login = strtolower(trim($prenom . $nom));
             $password = 'secret';
 
             // ajout d'un nouveau tuple;

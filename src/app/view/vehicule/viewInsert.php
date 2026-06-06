@@ -17,7 +17,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
 
         <label class='w-25' for="modele" class="form-label">Modèle : </label><input type="text" name='modele' size='75' value=''> <br />
 
-        <label class='w-25' for="annee" class="form-label">Année : </label><input type="number" name='annee' min='1900' max='2026' value=''> <br />
+        <label class='w-25' for="annee" class="form-label">Année : </label><input type="number" name='annee' min='1900' max='2026' step="1" value=''> <br />
 
         <label class='w-25' for="immatriculation" class="form-label">Immatriculation : </label><input type="text" name='immatriculation' size='75' value=''> <br />
 
