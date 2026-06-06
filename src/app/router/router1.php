@@ -1,6 +1,14 @@
 
 <!-- ----- debut Router1 -->
 <?php
+session_start();
+if (!isset($_SESSION['login_id'])) {
+    $_SESSION['login_id'] = null;
+    $_SESSION['login_role'] = null;
+    $_SESSION['login_nom'] = null;
+    $_SESSION['login_solde'] = null;
+}
+
 
 require ('../controller/ControllerVille.php');
 require ('../controller/ControllerVehicule.php');
@@ -15,6 +23,8 @@ parse_str($query_string, $param);
 
 // --- $action contient le nom de la méthode statique recherchée
 $action = htmlspecialchars($param["action"]);
+$action = isset($_POST['action']) ? $_POST['action'] : (isset($_GET['action']) ? $_GET['action'] : '');
+$action = htmlspecialchars($action);
 
 // --- Liste des méthodes autorisées
 switch ($action) {
@@ -33,6 +43,9 @@ switch ($action) {
     case "passagerCreate" :
     case "conducteurCreate" :
     case "utilisateurCreated" :
+    case "utilisateurLogin" :
+    case "utilisateurLoginVerif" :
+    case "utilisateurLogout" :
         ControllerUtilisateur::$action();
         break;
 

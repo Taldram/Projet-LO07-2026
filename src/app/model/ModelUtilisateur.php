@@ -95,7 +95,7 @@ class ModelUtilisateur
             $id = $tuple['0'];
             $id++;
 
-            $login = strtolower(trim($prenom . '.' . $nom));
+            $login = strtolower(trim($prenom . '' . $nom));
             $password = 'secret';
 
             // ajout d'un nouveau tuple;
@@ -115,6 +115,26 @@ class ModelUtilisateur
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return -1;
+        }
+    }
+
+    public static function login($login, $password)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select id, nom, prenom, role, login, password, solde
+                      from utilisateur
+                      where login = :login AND password = :password";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'login' => $login,
+                'password' => $password
+            ]);
+            $result = $statement->fetchObject('ModelUtilisateur');
+            return $result ? $result : null;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return null;
         }
     }
 }

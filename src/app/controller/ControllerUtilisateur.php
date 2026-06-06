@@ -51,6 +51,45 @@ class ControllerUtilisateur {
         require ($vue);
     }
 
+    public static function utilisateurLogin()
+    {
+        // ----- Construction chemin de la vue
+        include 'config.php';
+        $vue = $root . '/app/view/utilisateur/viewLogin.php';
+        require($vue);
+    }
+
+    public static function utilisateurLoginVerif()
+    {
+        $login = htmlspecialchars($_POST['login']);
+        $password = htmlspecialchars($_POST['password']);
+        $results = ModelUtilisateur::login($login, $password);
+        // ----- Construction chemin de la vue
+        include 'config.php';
+        if ($results == null) {
+            $vue = $root . '/app/view/utilisateur/viewNotLogged.php'; 
+        } else {
+            $_SESSION['login_id'] = $results->getId();
+            $_SESSION['login_role'] = $results->getRole();
+            $_SESSION['login_nom'] = $results->getNom() . ' ' . $results->getPrenom();
+            $_SESSION['login_solde'] = $results->getSolde();
+            $vue = $root . '/app/view/viewAccueil.php'; 
+        }
+        require ($vue);
+    }
+
+    public static function utilisateurLogout()
+    {
+        $_SESSION['login_id'] = null;
+        $_SESSION['login_role'] = null;
+        $_SESSION['login_nom'] = null;
+        $_SESSION['login_solde'] = null;
+        // ----- Construction chemin de la vue
+        include 'config.php';
+        $vue = $root . '/app/view/viewAccueil.php'; 
+        require ($vue);
+    }
+
 
 }
     

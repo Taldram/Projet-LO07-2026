@@ -16,7 +16,7 @@ require ($root . '/app/view/fragment/fragmentHeader.html');
         <input type="hidden" name='action' value='utilisateurCreated'><br>
         <label class='w-25' for="prenom" class="form-label" >Prénom : </label><input type="text" name='prenom' size='75' value=''> <br/>
         <input type="hidden" name='action' value='utilisateurCreated'><br>
-        <label class='w-25' for="solde" class="form-label" >Solde initial : </label><input type="number" name='solde' size='75' value=''> <br/> 
+        <label class='w-25' for="solde" class="form-label" >Solde initial : </label><input type="number" min="0" step="1" name='solde' size='75' value='0'> <br/> 
         <input type="hidden" name='action' value='utilisateurCreated'>
         <input type="hidden" name='role' value='<?php echo htmlspecialchars($role); ?>'>
       </div>
