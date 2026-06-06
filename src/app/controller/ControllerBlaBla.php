@@ -22,6 +22,13 @@ class ControllerBlaBla {
         $vue = $root . '/app/view/viewPropMVC.php'; 
         require ($vue);
     }
+
+    public static function examinateurSuperGlobales()
+    {   
+        include 'config.php';
+        $vue = $root . '/app/view/viewSuperGlobales.php';
+        require($vue);
+    }
 }
 
 ?>

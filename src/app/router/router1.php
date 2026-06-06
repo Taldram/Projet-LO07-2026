@@ -49,6 +49,8 @@ switch ($action) {
         break;
 
     case "innovationOriginale":
+    case "examinateurSuperGlobales":
+    case "examinateurCreate":
     case "innovationMVC":
         ControllerBlaBla::$action();
         break;
