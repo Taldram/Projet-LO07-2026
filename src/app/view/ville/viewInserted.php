@@ -10,17 +10,14 @@ require($root . '/app/view/fragment/fragmentHeader.html');
         ?>
         <!-- ===================================================== -->
         <?php
-        if ($results) {
-            echo ("<h3>La nouvelle ville a été ajouté </h3>");
+        if ($results !== false) {
+            echo ("<h3>La nouvelle ville a été ajoutée </h3>");
             echo ("<ul>");
             echo ("<li>id = " . $results . "</li>");
-            echo ("<li>nom = " . $_GET['nom'] . "</li>");
+            echo ("<li>nom = " . htmlspecialchars($nom) . "</li>");
             echo ("</ul>");
         }
-
-        echo ("</div>");
-
-        include $root . '/app/view/fragment/fragmentFooter.html';
         ?>
     </div>
+      <?php include $root . '/app/view/fragment/fragmentFooter.html'; ?>
 </body>

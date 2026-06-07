@@ -28,11 +28,19 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 ### Les fonctions d’un passager
 
 - [x] Liste de mes réservations @Taldram
-- [ ] Réservation d’un trajet actif @Taldram
+- [x] Réservation d’un trajet actif @Taldram
 
 ### Autre
 
 - [x] Les innovations proposées @Taldram
 - [x] SuperGlobales @Taldram
-- [ ] Réservations aléatoires @Taldram
+- [x] Réservations aléatoires @Taldram
 - [x] Les fonctions de connexion @Pierrelncls
+
+### Une fois les fonctions faites
+
+- [ ] Tout passer en POST
+- [ ] Faire bcp trop de tests
+- [ ] Rendre le tout joli
+- [ ] Reset la BDD
+- [ ] La présentation

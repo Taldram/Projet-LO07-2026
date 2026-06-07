@@ -109,12 +109,6 @@ class ModelReservation
                 return -1;
             }
 
-            if ($trajet['conducteur_id'] == $passager_id) {
-                $database->rollBack();
-                $_SESSION['reservation_error'] = 'Vous êtes le conducteur de ce trajet.';
-                return -1;
-            }
-
             if ($passager['solde'] < $trajet['prix']) {
                 $database->rollBack();
                 $_SESSION['reservation_error'] = 'Fonds insuffisants.';
@@ -136,12 +130,6 @@ class ModelReservation
                 'passager_id' => $passager_id
             ]);
 
-            // Update solde (débit passager, crédit conducteur)
-            $queryPaiement = "UPDATE utilisateur SET solde = solde + :montant WHERE id = :id";
-            $Pay = $database->prepare($queryPaiement);
-            $Pay->execute(['montant' => -$trajet['prix'], 'id' => $passager_id]);
-            $Pay->execute(['montant' => $trajet['prix'], 'id' => $trajet['conducteur_id']]);
-
             $database->commit();
             unset($_SESSION['reservation_error']);
             return true;
@@ -154,5 +142,52 @@ class ModelReservation
             $_SESSION['reservation_error'] = 'Erreur base de données: ' . $e->getMessage();
             return -1;
         }
+    }
+
+    public static function insert10Random()
+    {
+        $messages = [];
+        $database = Model::getInstance();
+
+        for ($i = 0; $i < 10; $i++) {
+            try {
+                // On cherche une combinaison compatible
+                $query = "SELECT u.id AS passager_id, u.prenom, u.nom AS passager_nom, 
+                                 t.id AS trajet_id, 
+                                 v_depart.nom AS ville_depart, v_arrivee.nom AS ville_arrivee
+                          FROM utilisateur u
+                          JOIN trajet t ON u.id != t.conducteur_id
+                          JOIN ville v_depart ON t.ville_depart = v_depart.id
+                          JOIN ville v_arrivee ON t.ville_arrivee = v_arrivee.id
+                          WHERE t.statut = 'actif'
+                          AND u.solde >= t.prix
+                          AND NOT EXISTS (
+                              SELECT 1 FROM reservation r 
+                              WHERE r.passager_id = u.id AND r.trajet_id = t.id
+                          )
+                          ORDER BY RAND()
+                          LIMIT 1";
+
+                $statement = $database->query($query);
+                $tuple = $statement->fetch(PDO::FETCH_ASSOC);
+
+                if ($tuple !== false) {
+                    // On insère avec la méthode insert
+                    $result = self::insert($tuple['passager_id'], $tuple['trajet_id']);
+                    
+                    if ($result === true) {
+                        $messages[] = "Nouvelle réservation sur le trajet " . $tuple['ville_depart'] . " --> " . $tuple['ville_arrivee'] . " par " . $tuple['prenom'] . " " . $tuple['passager_nom'];
+                    } else {
+                        $messages[] = "Échec inattendu lors de la réservation.";
+                    }
+                } else {
+                    $messages[] = "Aucune combinaison passager/trajet valide restante.";
+                }
+            } catch (PDOException $e) {
+                $messages[] = "Erreur SQL : " . $e->getMessage();
+            }
+        }
+        
+        return $messages;
     }
 }

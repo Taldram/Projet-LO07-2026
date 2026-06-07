@@ -12,7 +12,6 @@
         <?php 
             if (isset($_SESSION['reservation_error'])) {
                 echo $_SESSION['reservation_error'];
-                // On efface l'erreur une fois qu'elle est affichée
                 unset($_SESSION['reservation_error']);
             } else {
                 echo "Erreur inconnue (Aucun message reçu).";

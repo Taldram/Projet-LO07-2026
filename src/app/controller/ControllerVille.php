@@ -26,12 +26,16 @@ class ControllerVille
 
     public static function villeCreated()
     {
-        // ajouter une validation des informations du formulaire
-        $results = ModelVille::insert(
-            htmlspecialchars($_GET['nom']));
-        // ----- Construction chemin de la vue
+        $nom = $_POST['nom'] ?? '';
+
+        if (!empty($nom)) {
+            $results = ModelVille::insert($nom);
+        } else {
+            $results = false; // Indique une erreur d'insertion
+        }
+
         include 'config.php';
-        if ($results == -1) {
+        if ($results == false) {
             $vue = $root . '/app/view/ville/viewNotInserted.php'; 
         } else {
             $vue = $root . '/app/view/ville/viewInserted.php'; 

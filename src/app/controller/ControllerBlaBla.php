@@ -1,5 +1,7 @@
 <?php
 
+require_once '../model/ModelReservation.php';
+
 class ControllerBlaBla {
 
     public static function accueil()
@@ -27,6 +29,15 @@ class ControllerBlaBla {
     {   
         include 'config.php';
         $vue = $root . '/app/view/viewSuperGlobales.php';
+        require($vue);
+    }
+
+    public static function examinateurCreate()
+    {   
+        $messages = ModelReservation::insert10Random();
+
+        include 'config.php';
+        $vue = $root . '/app/view/viewResRandom.php';
         require($vue);
     }
 }
