@@ -14,7 +14,7 @@ require('../controller/ControllerVehicule.php');
 require('../controller/ControllerUtilisateur.php');
 require('../controller/ControllerReservation.php');
 require('../controller/ControllerBlaBla.php');
-require('../controller/ControllerReservation.php');
+require('../controller/ControllerTrajet.php');
 
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
@@ -62,6 +62,12 @@ switch ($action) {
     case "reservationCreate":
     case "reservationCreated":
         ControllerReservation::$action();
+        break;
+
+    case "trajetReadMine":
+    case "trajetCreate":
+    case "trajetCreated":
+        ControllerTrajet::$action();
         break;
         
     default:

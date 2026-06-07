@@ -11,7 +11,7 @@ require ($root . '/app/view/fragment/fragmentHeader.html');
 
     <form role="form" method='get' action='router1.php'>
       <div class="form-group">
-        <input type="hidden" name='action' value='utilisateurCreated'><br/>
+        <input type="hidden" name='action' value='trajetCreated'><br/>
         <label for="proprietaire" class="mt-3">Ville de départ :</label> <br> <br>
         <select class="form-control" id="ville_depart" name="ville_depart" style="width: 400px" required>
           <?php

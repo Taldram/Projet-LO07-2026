@@ -2,7 +2,7 @@
 
 require_once "Model.php";
 
-class ModelReservation {
+class ModelTrajet {
 
     private $id;
     private $trajet_id;
@@ -27,7 +27,7 @@ class ModelReservation {
                       order by id";
             $statement = $database->prepare($query);
             $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelReservation");
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
             return $results;
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
@@ -41,14 +41,14 @@ class ModelReservation {
             $database = Model::getInstance();
 
             // recherche de la valeur de la clé = max(id) + 1
-            $query = "select max(id) from reservation";
+            $query = "select max(id) from trajet";
             $statement = $database->query($query);
             $tuple = $statement->fetch();
             $id = $tuple['0'];
             $id++;
 
             // ajout d'un nouveau tuple;
-            $query = "insert into reservation (id, ville_depart, ville_arrivee, conducteur_id, vehicule_id, prix, date_depart, heure_depart, statut)
+            $query = "insert into trajet (id, ville_depart, ville_arrivee, conducteur_id, vehicule_id, prix, date_depart, heure_depart, statut)
             values (:id, :ville_depart, :ville_arrivee, :conducteur_id, :vehicule_id, :prix, :date_depart, :heure_depart, :statut)";
             $statement = $database->prepare($query);
             $statement->execute([

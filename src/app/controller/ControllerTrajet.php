@@ -1,35 +1,35 @@
 <?php
 
-require_once "../model/ModelReservation.php";
+require_once "../model/ModelTrajet.php";
 
-class ControllerReservation {
+class ControllerTrajet {
 
-    public static function reservationReadMine()
+    public static function trajetReadMine()
     {
         $login = htmlspecialchars($_POST['login']);
-        $results = ModelReservation::getMine($login);
+        $results = ModelTrajet::getMine($login);
 
         include 'config.php';
-        $vue = $root . '/app/view/reservation/viewMine.php';
+        $vue = $root . '/app/view/trajet/viewMine.php';
         if (DEBUG)
-            echo ("ControllerReservation : reservationReadMine : vue = $vue");
+            echo ("ControllerTrajet : trajetReadMine : vue = $vue");
         require($vue);
     }
 
-    public static function reservationCreate()
+    public static function trajetCreate()
     {
         $ville = ModelVille::getAll();
         $vehicule = ModelVehicule::getAll();
 
         // ----- Construction chemin de la vue
         include 'config.php';
-        $vue = $root . '/app/view/reservation/viewInsert.php';
+        $vue = $root . '/app/view/trajet/viewInsert.php';
         require($vue);
     }
 
-    public static function reservationCreated()
+    public static function trajetCreated()
     {
-        $results = ModelReservation::insert(
+        $results = ModelTrajet::insert(
             htmlspecialchars($_GET['id']),
             htmlspecialchars($_GET['ville_depart']),
             htmlspecialchars($_GET['ville_arrivee']),
@@ -43,9 +43,9 @@ class ControllerReservation {
         // ----- Construction chemin de la vue
         include 'config.php';
         if ($results == -1) {
-            $vue = $root . '/app/view/reservation/viewNotInserted.php'; 
+            $vue = $root . '/app/view/trajet/viewNotInserted.php'; 
         } else {
-            $vue = $root . '/app/view/reservation/viewInserted.php'; 
+            $vue = $root . '/app/view/trajet/viewInserted.php'; 
         }
         require ($vue);
     }
