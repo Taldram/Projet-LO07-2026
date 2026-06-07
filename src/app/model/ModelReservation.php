@@ -79,57 +79,80 @@ class ModelReservation
     }
 
     public static function insert($passager_id, $trajet_id)
-{
-    try {
-        $database = Model::getInstance();
-        
-        $database->beginTransaction();
+    {
+        try {
+            $database = Model::getInstance();
 
-        // Récupération des infos pour les tests
-        $queryTrajet = "SELECT conducteur_id, prix FROM trajet WHERE id = :trajet_id";
-        $T = $database->prepare($queryTrajet);
-        $T->execute(['trajet_id' => intval($trajet_id)]);
-        $trajet = $T->fetch(PDO::FETCH_ASSOC);
+            $database->beginTransaction();
 
-        $queryPassager = "SELECT solde FROM utilisateur WHERE id = :passager_id";
-        $P = $database->prepare($queryPassager);
-        $P->execute(['passager_id' => intval($passager_id)]);
-        $passager = $P->fetch(PDO::FETCH_ASSOC);
+            // Récupération des infos pour les tests
+            $queryTrajet = "SELECT conducteur_id, prix FROM trajet WHERE id = :trajet_id";
+            $T = $database->prepare($queryTrajet);
+            $T->execute(['trajet_id' => intval($trajet_id)]);
+            $trajet = $T->fetch(PDO::FETCH_ASSOC);
 
-        // Les conditions d'erreur
-        if ($trajet['conducteur_id'] == $passager_id) {
-            $database->rollBack(); 
-            return -1;
-        }
-        if ($passager['solde'] < $trajet['prix']) {
+            $queryPassager = "SELECT solde FROM utilisateur WHERE id = :passager_id";
+            $P = $database->prepare($queryPassager);
+            $P->execute(['passager_id' => intval($passager_id)]);
+            $passager = $P->fetch(PDO::FETCH_ASSOC);
+
+            // Vérifications avant modifications
+            if ($trajet === false) {
+                $database->rollBack();
+                $_SESSION['reservation_error'] = 'Trajet introuvable.';
+                return -1;
+            }
+
+            if ($passager === false) {
+                $database->rollBack();
+                $_SESSION['reservation_error'] = 'Passager introuvable.';
+                return -1;
+            }
+
+            if ($trajet['conducteur_id'] == $passager_id) {
+                $database->rollBack();
+                $_SESSION['reservation_error'] = 'Vous êtes le conducteur de ce trajet.';
+                return -1;
+            }
+
+            if ($passager['solde'] < $trajet['prix']) {
+                $database->rollBack();
+                $_SESSION['reservation_error'] = 'Fonds insuffisants.';
+                return -1;
+            }
+
+            // Insertion
+            $queryMaxId = "SELECT MAX(id) FROM reservation";
+            $stmtMaxId = $database->query($queryMaxId);
+            $tuple = $stmtMaxId->fetch();
+            $id = $tuple[0];
+            $id++;
+
+            $queryInsert = "INSERT INTO reservation (id, trajet_id, passager_id) VALUES (:id, :trajet_id, :passager_id)";
+            $Insert = $database->prepare($queryInsert);
+            $Insert->execute([
+                'id' => $id,
+                'trajet_id' => $trajet_id,
+                'passager_id' => $passager_id
+            ]);
+
+            // Update solde (débit passager, crédit conducteur)
+            $queryPaiement = "UPDATE utilisateur SET solde = solde + :montant WHERE id = :id";
+            $Pay = $database->prepare($queryPaiement);
+            $Pay->execute(['montant' => -$trajet['prix'], 'id' => $passager_id]);
+            $Pay->execute(['montant' => $trajet['prix'], 'id' => $trajet['conducteur_id']]);
+
+            $database->commit();
+            unset($_SESSION['reservation_error']);
+            return true;
+        } catch (PDOException $e) {
             $database->rollBack();
+            if ($e->getCode() == 23000) {
+                $_SESSION['reservation_error'] = 'Vous avez déjà réservé ce trajet.';
+                return -1;
+            }
+            $_SESSION['reservation_error'] = 'Erreur base de données: ' . $e->getMessage();
             return -1;
         }
-
-        // Insertion
-        $queryInsert = "INSERT INTO reservation (trajet_id, passager_id) VALUES (:trajet_id, :passager_id)";
-        $Insert = $database->prepare($queryInsert);
-        $Insert->execute(['trajet_id' => $trajet_id, 'passager_id' => $passager_id]);
-
-        // Update solde
-        $queryPaiement = "UPDATE utilisateur SET solde = solde + :montant WHERE id = :id";
-        $Pay = $database->prepare($queryPaiement);
-        $Pay->execute(['montant' => -$trajet['prix'], 'id' => $passager_id]);
-        $Pay->execute(['montant' => $trajet['prix'], 'id' => $trajet['conducteur_id']]);
-
-        $database->commit();
-        return true;
-
-    } catch (PDOException $e) {
-        $database->rollBack(); 
-        
-        if ($e->getCode() == 23000) {
-            return -1;
-        }
-        return -1;
     }
 }
-
-}
-
-?>
