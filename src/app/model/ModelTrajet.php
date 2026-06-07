@@ -35,7 +35,7 @@ class ModelTrajet {
         }
     }
 
-    public static function insert($id, $ville_depart, $ville_arrivee, $conducteur_id, $vehicule_id, $prix, $date_depart, $heure_depart, $statut)
+    public static function insert($ville_depart, $ville_arrivee, $conducteur_id, $vehicule_id, $prix, $date_depart, $heure_depart, $statut)
     {
         try {
             $database = Model::getInstance();

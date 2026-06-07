@@ -10,6 +10,12 @@ class ModelVehicule
     private $annee;
     private $immatriculation;
     private $proprietaire;
+    private $id;
+
+    function getId()
+    {
+        return $this->id;
+    }
 
     function getMarque()
     {
@@ -58,7 +64,7 @@ class ModelVehicule
     {
         try {
             $database = Model::getInstance();
-            $query = "select marque, modele, annee, immatriculation
+            $query = "select vehicule.id as id, marque, modele, annee, immatriculation
                       from vehicule, utilisateur
                       where vehicule.proprietaire_id = utilisateur.id
                       and vehicule.proprietaire_id = :proprietaire_id

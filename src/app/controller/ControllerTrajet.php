@@ -1,6 +1,8 @@
 <?php
 
 require_once "../model/ModelTrajet.php";
+require_once "../model/ModelVille.php";
+require_once "../model/ModelVehicule.php";
 
 class ControllerTrajet {
 
@@ -18,30 +20,32 @@ class ControllerTrajet {
 
     public static function trajetCreate()
     {
+        include 'config.php';
         $ville = ModelVille::getAll();
-        $vehicule = ModelVehicule::getAll();
+        $loginId = $_SESSION['login_id'] ?? null;
+        $vehicule = ModelVehicule::getMine($loginId);
 
         // ----- Construction chemin de la vue
-        include 'config.php';
         $vue = $root . '/app/view/trajet/viewInsert.php';
         require($vue);
     }
 
     public static function trajetCreated()
     {
+        include 'config.php';
+        
         $results = ModelTrajet::insert(
-            htmlspecialchars($_GET['id']),
-            htmlspecialchars($_GET['ville_depart']),
-            htmlspecialchars($_GET['ville_arrivee']),
-            htmlspecialchars($_GET['conducteur_id']),
-            htmlspecialchars($_GET['vehicule_id']),
-            htmlspecialchars($_GET['prix']),
-            htmlspecialchars($_GET['date_depart']),
-            htmlspecialchars($_GET['heure_depart']),
-            htmlspecialchars($_GET['statut']));
+            htmlspecialchars($_POST['ville_depart']),
+            htmlspecialchars($_POST['ville_arrivee']),
+            htmlspecialchars($_POST['conducteur_id']),
+            htmlspecialchars($_POST['vehicule_id']),
+            htmlspecialchars($_POST['prix']),
+            htmlspecialchars($_POST['date_depart']),
+            htmlspecialchars($_POST['heure_depart']),
+            htmlspecialchars($_POST['statut']));
         
         // ----- Construction chemin de la vue
-        include 'config.php';
+        $trajetId = $results;
         if ($results == -1) {
             $vue = $root . '/app/view/trajet/viewNotInserted.php'; 
         } else {

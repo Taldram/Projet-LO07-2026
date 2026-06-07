@@ -1,5 +1,3 @@
-
-<!-- ----- debut Model -->
 <?php
 
 class Model extends PDO {
@@ -10,20 +8,31 @@ class Model extends PDO {
  public function __construct() {
  }
 
- //Singleton
+ // Singleton
  public static function getInstance() {
-  // les variables sont définies dans le fichier config.php
-  include_once '../controller/config.php';
   
-  if (DEBUG) echo ("Model : getInstance : dsn = $dsn</br>");
+  $cheminConfig = __DIR__ . '/../controller/config.php';
+  
+  if (file_exists($cheminConfig)) {
+      include $cheminConfig;
+  } else {
+      die("Erreur critique : impossible de trouver le fichier config.php au chemin : $cheminConfig");
+  }
+
+  // Petite sécurité pour le debug
+  if (defined('DEBUG') && DEBUG) {
+      echo ("Model : getInstance : dsn = $dsn</br>");
+  }
 
   $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 
   if (!isset(self::$_instance)) {
    try {
+    // Si la connexion réussit, PDO est créé avec les bonnes variables
     self::$_instance = new PDO($dsn, $username, $password, $options);
    } catch (PDOException $e) {
-    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+    printf("Erreur de connexion PDO : %s - %s<p/>\n", $e->getCode(), $e->getMessage());
+    die(); 
    }
   }
   return self::$_instance;
@@ -31,4 +40,3 @@ class Model extends PDO {
 
 }
 ?>
-<!-- ----- fin Model -->
