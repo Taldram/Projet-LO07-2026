@@ -12,6 +12,9 @@ class ModelReservation
     private $conducteur;
     private $vehicule;
     private $immatriculation;
+    private $passager_id;
+    private $nom;
+    private $prenom;
 
     function getDepart()
     {
@@ -47,6 +50,21 @@ class ModelReservation
         return $this->vehicule;
     }
 
+    function getPassager_id()
+    {
+        return $this->passager_id;
+    }
+
+    function getNom()
+    {
+        return $this->nom;
+    }
+
+    function getPrenom()
+    {
+        return $this->prenom;
+    }
+
     public static function getMine($passager_id)
     {
         try {
@@ -69,6 +87,31 @@ class ModelReservation
             $statement = $database->prepare($query);
             $statement->execute([
                 'passager_id' => $passager_id
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelReservation");
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    public static function getPassagersByTrajet($conducteur_id, $trajet_id)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "SELECT u.nom, u.prenom
+                      FROM reservation r
+                      INNER JOIN trajet t ON r.trajet_id = t.id
+                      INNER JOIN utilisateur u ON r.passager_id = u.id
+                      WHERE t.id = :trajet_id
+                      AND t.conducteur_id = :conducteur_id
+                      AND t.statut = 'actif'
+                      ORDER BY u.nom, u.prenom";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'trajet_id' => $trajet_id,
+                'conducteur_id' => $conducteur_id
             ]);
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelReservation");
             return $results;

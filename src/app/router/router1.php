@@ -65,6 +65,7 @@ switch ($action) {
         break;
 
     case "trajetReadMine":
+    case "trajetReadPassagers":
     case "trajetCreate":
     case "trajetCreated":
         ControllerTrajet::$action();
