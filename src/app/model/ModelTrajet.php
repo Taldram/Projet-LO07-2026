@@ -49,7 +49,7 @@ class ModelTrajet
     {
         return $this->statut;
     }
-    
+
 
     function getDepart()
     {
@@ -129,16 +129,16 @@ class ModelTrajet
         try {
             $database = Model::getInstance();
             $query = "SELECT t.*, 
-                             v_depart.nom AS nom_depart, 
-                             v_arrivee.nom AS nom_arrivee
-                      FROM trajet t
-                      INNER JOIN ville v_depart ON t.ville_depart = v_depart.id
-                      INNER JOIN ville v_arrivee ON t.ville_arrivee = v_arrivee.id
-                      WHERE t.statut = 'actif'";
+                 v_depart.nom AS nom_depart, 
+                 v_arrivee.nom AS nom_arrivee
+          FROM trajet t
+          INNER JOIN ville v_depart ON t.ville_depart = v_depart.id
+          INNER JOIN ville v_arrivee ON t.ville_arrivee = v_arrivee.id
+          WHERE t.statut = 'actif'"; // <-- Aucun jeton ici !
+
             $statement = $database->prepare($query);
-            $statement->execute([
-                'conducteur_id' => $_SESSION['login_id']
-            ]);
+
+            $statement->execute();
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
             return $results;
         } catch (PDOException $e) {

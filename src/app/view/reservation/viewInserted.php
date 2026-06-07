@@ -1,28 +1,15 @@
-<?php
-require($root . '/app/view/fragment/fragmentHeader.html');
-?>
-
+<?php require ($root . '/app/view/fragment/fragmentHeader.html'); ?>
 <body>
-    <div class="container">
-        <?php
-        include $root . '/app/view/fragment/fragmentMenu.php';
-        include $root . '/app/view/fragment/fragmentJumbotron.html';
-        ?>
-        <!-- ===================================================== -->
-        <?php
-        if ($results) {
-            echo ("<h3>Le trajet a bien été réservé. </h3>");
-            echo ("<ul>");
-            //echo ("<li>marque = " . $_GET['marque'] . "</li>");
-            //echo ("<li>modele = " . $_GET['modele'] . "</li>");
-            //echo ("<li>annee = " . $_GET['annee'] . "</li>");
-            //echo ("<li>immatriculation = " . $_GET['immatriculation'] . "</li>");
-            echo ("</ul>");
-        }
-
-        echo ("</div>");
-
-        include $root . '/app/view/fragment/fragmentFooter.html';
-        ?>
+  <div class="container">
+    <?php
+      include $root . '/app/view/fragment/fragmentMenu.php';
+      include $root . '/app/view/fragment/fragmentJumbotron.html';
+    ?>
+    
+    <div class="alert alert-success" role="alert">
+        <p>La réservation a été effectuée avec succès ! </p> <br>
+        <a href="router1.php?action=reservationReadMine" class="btn btn-primary mt-3">Voir mes réservations</a>
     </div>
-</body>
+    
+  </div>
+  <?php include $root . '/app/view/fragment/fragmentFooter.html'; ?>

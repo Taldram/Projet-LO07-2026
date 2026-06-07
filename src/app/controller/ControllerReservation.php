@@ -48,7 +48,7 @@ class ControllerReservation
         $results = ModelReservation::insert($login, $trajet_id);
 
         include 'config.php';
-        if ($results == -1) {
+        if ($results === -1) {
             $vue = $root . '/app/view/reservation/viewNotInserted.php';
         } else {
             $vue = $root . '/app/view/reservation/viewInserted.php';
