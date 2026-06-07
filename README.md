@@ -22,8 +22,8 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 - [x] Liste de mes véhicules @Pierrelncls
 - [x] Liste de tous mes trajets (actifs et passifs) @Pierrelncls
 - [x] Ajout d’un trajet @Pierrelncls
-- [ ] Liste des passagers de l’un de mes trajets actifs
-- [ ] Clôturer un trajet actif
+- [x] Liste des passagers de l’un de mes trajets actifs @Pierrelncls
+- [ ] Clôturer un trajet actif @Pierrelncls
 
 ### Les fonctions d’un passager
 
