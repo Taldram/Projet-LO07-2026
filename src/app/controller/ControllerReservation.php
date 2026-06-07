@@ -2,12 +2,20 @@
 
 require_once "../model/ModelReservation.php";
 
-class ControllerReservation {
+class ControllerReservation
+{
 
     public static function reservationReadMine()
     {
-        $login = htmlspecialchars($_POST['login']);
-        $results = ModelReservation::getMine($login);
+        $login = $_SESSION['login_id'];
+        if ($login === null) {
+            include 'config.php';
+            $vue = $root . '/app/view/utilisateur/viewLogin.php';
+            require($vue);
+            return;
+        }
+
+        $results = ModelReservation::getMine((int)$login);
 
         include 'config.php';
         $vue = $root . '/app/view/reservation/viewMine.php';
@@ -18,4 +26,3 @@ class ControllerReservation {
 
     
 }
-?>
