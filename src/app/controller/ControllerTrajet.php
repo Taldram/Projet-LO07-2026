@@ -8,8 +8,7 @@ class ControllerTrajet {
 
     public static function trajetReadMine()
     {
-        $login = htmlspecialchars($_POST['login']);
-        $results = ModelTrajet::getMine($login);
+        $results = ModelTrajet::getMine();
 
         include 'config.php';
         $vue = $root . '/app/view/trajet/viewMine.php';

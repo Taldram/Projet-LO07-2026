@@ -7,7 +7,6 @@ class ModelTrajet {
     private $id;
     private $trajet_id;
     private $passager_id;
-    private $login;
     private $ville_depart;
     private $ville_arrivee;
     private $conducteur_id;
@@ -17,16 +16,54 @@ class ModelTrajet {
     private $heure_depart;
     private $statut;
 
+    function getId()
+    {
+        return $this->id;
+    }
+
+    function getVille_depart()
+    {
+        return $this->ville_depart;
+    }
+
+    function getVille_arrivee()
+    {
+        return $this->ville_arrivee;
+    }
+
+    function getDate_depart()
+    {
+        return $this->date_depart;
+    }
+
+    function getHeure_depart()
+    {
+        return $this->heure_depart;
+    }
+
+    function getStatut()
+    {
+        return $this->statut;
+    }
+
     public static function getMine()
     {
         try {
             $database = Model::getInstance();
-            $query = "select ...
-                      from utilisateur, trajet, vehicule, reservation, ville
-                      where role = 'conducteur'
-                      order by id";
+            $query = "select ville_depart.nom AS ville_depart,
+                    ville_arrivee.nom AS ville_arrivee,
+                    date_depart,
+                    heure_depart,
+                    statut
+                    from trajet, ville as ville_depart, ville as ville_arrivee
+                    where conducteur_id = :conducteur_id
+                    and trajet.ville_depart = ville_depart.id
+                    and trajet.ville_arrivee = ville_arrivee.id
+                    order by date_depart, heure_depart";
             $statement = $database->prepare($query);
-            $statement->execute();
+            $statement->execute([
+                'conducteur_id' => $_SESSION['login_id']
+            ]);
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
             return $results;
         } catch (PDOException $e) {
