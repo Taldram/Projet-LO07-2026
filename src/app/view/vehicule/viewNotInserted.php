@@ -10,7 +10,7 @@
         <div class="alert alert-danger mt-4">
             <h2>Erreur d'insertion</h2>
             <hr>
-            <p>Problème de création du véhicule. Vérifiez que l'immatriculation est unique.</p>
+            <p>Problème d'enregistrement du trajet.</p>
 
         </div>
     </div>

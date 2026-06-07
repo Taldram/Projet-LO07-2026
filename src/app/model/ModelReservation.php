@@ -9,7 +9,6 @@ class ModelReservation
     private $destination;
     private $date_depart;
     private $heure_depart;
-    private $passager_id;
     private $conducteur;
     private $vehicule;
     private $immatriculation;
@@ -79,4 +78,58 @@ class ModelReservation
         }
     }
 
+    public static function insert($passager_id, $trajet_id)
+{
+    try {
+        $database = Model::getInstance();
+        
+        $database->beginTransaction();
+
+        // Récupération des infos pour les tests
+        $queryTrajet = "SELECT conducteur_id, prix FROM trajet WHERE id = :trajet_id";
+        $T = $database->prepare($queryTrajet);
+        $T->execute(['trajet_id' => intval($trajet_id)]);
+        $trajet = $T->fetch(PDO::FETCH_ASSOC);
+
+        $queryPassager = "SELECT solde FROM utilisateur WHERE id = :passager_id";
+        $P = $database->prepare($queryPassager);
+        $P->execute(['passager_id' => intval($passager_id)]);
+        $passager = $P->fetch(PDO::FETCH_ASSOC);
+
+        // Les conditions d'erreur
+        if ($trajet['conducteur_id'] == $passager_id) {
+            $database->rollBack(); 
+            return -1;
+        }
+        if ($passager['solde'] < $trajet['prix']) {
+            $database->rollBack();
+            return -1;
+        }
+
+        // Insertion
+        $queryInsert = "INSERT INTO reservation (trajet_id, passager_id) VALUES (:trajet_id, :passager_id)";
+        $Insert = $database->prepare($queryInsert);
+        $Insert->execute(['trajet_id' => $trajet_id, 'passager_id' => $passager_id]);
+
+        // Update solde
+        $queryPaiement = "UPDATE utilisateur SET solde = solde + :montant WHERE id = :id";
+        $Pay = $database->prepare($queryPaiement);
+        $Pay->execute(['montant' => -$trajet['prix'], 'id' => $passager_id]);
+        $Pay->execute(['montant' => $trajet['prix'], 'id' => $trajet['conducteur_id']]);
+
+        $database->commit();
+        return true;
+
+    } catch (PDOException $e) {
+        $database->rollBack(); 
+        
+        if ($e->getCode() == 23000) {
+            return -1;
+        }
+        return -1;
+    }
 }
+
+}
+
+?>
