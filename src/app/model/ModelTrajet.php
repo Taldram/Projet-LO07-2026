@@ -25,6 +25,32 @@ class ModelTrajet
         return $this->id;
     }
 
+    function getVille_depart()
+    {
+        return $this->ville_depart;
+    }
+
+    function getVille_arrivee()
+    {
+        return $this->ville_arrivee;
+    }
+
+    function getDate_depart()
+    {
+        return $this->date_depart;
+    }
+
+    function getHeure_depart()
+    {
+        return $this->heure_depart;
+    }
+
+    function getStatut()
+    {
+        return $this->statut;
+    }
+    
+
     function getDepart()
     {
         return $this->nom_depart;
@@ -48,12 +74,20 @@ class ModelTrajet
     {
         try {
             $database = Model::getInstance();
-            $query = "select ...
-                      from utilisateur, trajet, vehicule, reservation, ville
-                      where role = 'conducteur'
-                      order by id";
+            $query = "select ville_depart.nom AS ville_depart,
+                    ville_arrivee.nom AS ville_arrivee,
+                    date_depart,
+                    heure_depart,
+                    statut
+                    from trajet, ville as ville_depart, ville as ville_arrivee
+                    where conducteur_id = :conducteur_id
+                    and trajet.ville_depart = ville_depart.id
+                    and trajet.ville_arrivee = ville_arrivee.id
+                    order by date_depart, heure_depart";
             $statement = $database->prepare($query);
-            $statement->execute();
+            $statement->execute([
+                'conducteur_id' => $_SESSION['login_id']
+            ]);
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
             return $results;
         } catch (PDOException $e) {
@@ -74,7 +108,9 @@ class ModelTrajet
                       INNER JOIN ville v_arrivee ON t.ville_arrivee = v_arrivee.id
                       WHERE t.statut = 'actif'";
             $statement = $database->prepare($query);
-            $statement->execute();
+            $statement->execute([
+                'conducteur_id' => $_SESSION['login_id']
+            ]);
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
             return $results;
         } catch (PDOException $e) {
@@ -83,7 +119,7 @@ class ModelTrajet
         }
     }
 
-    public static function insert($id, $ville_depart, $ville_arrivee, $conducteur_id, $vehicule_id, $prix, $date_depart, $heure_depart, $statut)
+    public static function insert($ville_depart, $ville_arrivee, $conducteur_id, $vehicule_id, $prix, $date_depart, $heure_depart, $statut)
     {
         try {
             $database = Model::getInstance();
