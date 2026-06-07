@@ -96,6 +96,34 @@ class ModelTrajet
         }
     }
 
+    public static function getMineActifs($conducteur_id)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select trajet.id as id,
+                    ville_depart.nom AS ville_depart,
+                    ville_arrivee.nom AS ville_arrivee,
+                    date_depart,
+                    heure_depart,
+                    statut
+                    from trajet, ville as ville_depart, ville as ville_arrivee
+                    where conducteur_id = :conducteur_id
+                    and statut = 'actif'
+                    and trajet.ville_depart = ville_depart.id
+                    and trajet.ville_arrivee = ville_arrivee.id
+                    order by date_depart, heure_depart";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'conducteur_id' => $conducteur_id
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
     public static function getTrajets()
     {
         try {

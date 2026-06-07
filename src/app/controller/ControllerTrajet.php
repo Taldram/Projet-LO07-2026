@@ -1,6 +1,7 @@
 <?php
 
 require_once "../model/ModelTrajet.php";
+require_once "../model/ModelReservation.php";
 require_once "../model/ModelVille.php";
 require_once "../model/ModelVehicule.php";
 
@@ -51,6 +52,33 @@ class ControllerTrajet {
             $vue = $root . '/app/view/trajet/viewInserted.php'; 
         }
         require ($vue);
+    }
+
+    public static function trajetReadPassagers()
+    {
+        $loginId = $_SESSION['login_id'] ?? null;
+        $loginRole = $_SESSION['login_role'] ?? null;
+
+        if ($loginId === null || $loginRole !== 'conducteur') {
+            include 'config.php';
+            $vue = $root . '/app/view/utilisateur/viewLogin.php';
+            require($vue);
+            return;
+        }
+
+        $trajets = ModelTrajet::getMineActifs($loginId);
+        $trajetId = isset($_GET['trajet_id']) ? intval($_GET['trajet_id']) : null;
+        $results = [];
+
+        if ($trajetId !== null && $trajetId > 0) {
+            $results = ModelReservation::getPassagersByTrajet($loginId, $trajetId);
+        }
+
+        include 'config.php';
+        $vue = $root . '/app/view/trajet/viewPassagers.php';
+        if (DEBUG)
+            echo ("ControllerTrajet : trajetReadPassagers : vue = $vue");
+        require($vue);
     }
 }
 ?>
