@@ -19,9 +19,9 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 
 ### Les fonctions d’un conducteur
 
-- [x] Liste de mes véhicules
+- [x] Liste de mes véhicules @Pierrelncls
 - [ ] Liste de tous mes trajets (actifs et passifs)
-- [ ] Ajout d’un trajet
+- [ ] Ajout d’un trajet @Pierrelncls
 - [ ] Liste des passagers de l’un de mes trajets actifs
 - [ ] Clôturer un trajet actif
 

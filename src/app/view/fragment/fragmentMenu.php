@@ -47,7 +47,7 @@ $Passager = $loginRole === 'passager';
             <li><a class="dropdown-item" href="router1.php?action=vehiculeReadMine">Liste de mes véhicules</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="router1.php?action=trajetReadMine">Liste de tous mes trajets (actifs et passifs)</a></li>
-            <li><a class="dropdown-item" href="router1.php?action=trajetCreate">Ajout d'un trajet</a></li>
+            <li><a class="dropdown-item" href="router1.php?action=reservationCreate">Ajout d'un trajet</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="router1.php?action=trajetReadPassagers">Liste des passagers d'un de mes trajets actifs</a></li>
             <li><a class="dropdown-item" href="router1.php?action=trajetCloturer">Cloturer l'un de mes trajets actifs</a></li>

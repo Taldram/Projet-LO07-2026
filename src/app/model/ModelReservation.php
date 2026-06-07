@@ -8,6 +8,14 @@ class ModelReservation {
     private $trajet_id;
     private $passager_id;
     private $login;
+    private $ville_depart;
+    private $ville_arrivee;
+    private $conducteur_id;
+    private $vehicule_id;
+    private $prix;
+    private $date_depart;
+    private $heure_depart;
+    private $statut;
 
     public static function getMine()
     {
@@ -26,5 +34,6 @@ class ModelReservation {
             return NULL;
         }
     }
+
 }
 ?>

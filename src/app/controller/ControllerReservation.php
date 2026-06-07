@@ -16,5 +16,6 @@ class ControllerReservation {
         require($vue);
     }
 
+    
 }
 ?>
