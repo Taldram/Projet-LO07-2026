@@ -13,6 +13,7 @@ require('../controller/ControllerVille.php');
 require('../controller/ControllerVehicule.php');
 require('../controller/ControllerUtilisateur.php');
 require('../controller/ControllerBlaBla.php');
+require('../controller/ControllerReservation.php');
 
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
@@ -54,6 +55,10 @@ switch ($action) {
     case "examinateurCreate":
     case "innovationMVC":
         ControllerBlaBla::$action();
+        break;
+    
+    case "reservationReadMine":
+        ControllerReservation::$action();
         break;
         
     default:
