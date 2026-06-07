@@ -26,10 +26,10 @@ class ControllerVehicule {
             return;
         }
 
-        $results = ModelVehicule::getMine((int)$loginId);
+        $results = ModelVehicule::getMine($loginId);
 
         include 'config.php';
-        $vue = $root . '/app/view/vehicule/viewAll.php';
+        $vue = $root . '/app/view/vehicule/viewMine.php';
         if (DEBUG)
             echo ("ControllerVehicule : vehiculeReadMine : vue = $vue");
         require($vue);

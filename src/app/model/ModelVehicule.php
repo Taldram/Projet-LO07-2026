@@ -58,7 +58,7 @@ class ModelVehicule
     {
         try {
             $database = Model::getInstance();
-            $query = "select marque, modele, annee, immatriculation, CONCAT(nom, ' ', prenom) AS proprietaire
+            $query = "select marque, modele, annee, immatriculation
                       from vehicule, utilisateur
                       where vehicule.proprietaire_id = utilisateur.id
                       and vehicule.proprietaire_id = :proprietaire_id
