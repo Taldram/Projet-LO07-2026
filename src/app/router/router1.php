@@ -33,6 +33,7 @@ switch ($action) {
         ControllerVille::$action();
         break;
     case "vehiculeReadAll":
+    case "vehiculeReadMine":
     case "vehiculeCreate":
     case "vehiculeCreated":
         ControllerVehicule::$action();

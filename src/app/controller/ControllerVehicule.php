@@ -16,6 +16,25 @@ class ControllerVehicule {
         require($vue);
     }
 
+    public static function vehiculeReadMine()
+    {
+        $loginId = $_SESSION['login_id'] ?? null;
+        if ($loginId === null) {
+            include 'config.php';
+            $vue = $root . '/app/view/utilisateur/viewLogin.php';
+            require($vue);
+            return;
+        }
+
+        $results = ModelVehicule::getMine((int)$loginId);
+
+        include 'config.php';
+        $vue = $root . '/app/view/vehicule/viewAll.php';
+        if (DEBUG)
+            echo ("ControllerVehicule : vehiculeReadMine : vue = $vue");
+        require($vue);
+    }
+
     public static function vehiculeCreate()
     {
         $conducteurs = ModelUtilisateur::getConducteurs();

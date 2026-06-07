@@ -19,7 +19,7 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 
 ### Les fonctions d’un conducteur
 
-- [ ] Liste de mes véhicules
+- [x] Liste de mes véhicules
 - [ ] Liste de tous mes trajets (actifs et passifs)
 - [ ] Ajout d’un trajet
 - [ ] Liste des passagers de l’un de mes trajets actifs
@@ -35,4 +35,4 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 - [x] Les innovations proposées @Taldram
 - [x] SuperGlobales @Taldram
 - [ ] Réservations aléatoires @Taldram
-- [ ] Les fonctions de connexion @Pierrelncls
+- [x] Les fonctions de connexion @Pierrelncls

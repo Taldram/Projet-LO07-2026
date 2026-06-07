@@ -54,6 +54,27 @@ class ModelVehicule
         }
     }
 
+    public static function getMine($proprietaireId)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select marque, modele, annee, immatriculation, CONCAT(nom, ' ', prenom) AS proprietaire
+                      from vehicule, utilisateur
+                      where vehicule.proprietaire_id = utilisateur.id
+                      and vehicule.proprietaire_id = :proprietaire_id
+                      order by annee";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'proprietaire_id' => $proprietaireId
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelVehicule");
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
     public static function insert($marque, $modele, $annee, $immatriculation, $proprietaire)
     {
         try {
