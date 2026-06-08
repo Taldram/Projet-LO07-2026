@@ -14,10 +14,10 @@ require($root . '/app/view/fragment/fragmentHeader.html');
             echo ("<h3>Le nouvel utilisateur a été ajouté </h3>");
             echo ("<ul>");
             echo ("<li>id = " . $results . "</li>");
-            echo ("<li>nom = " . $_GET['nom'] . "</li>");
-            echo ("<li>prenom = " . $_GET['prenom'] . "</li>");
-            echo ("<li>role = " . $_GET['role'] . "</li>");
-            echo ("<li>solde = " . $_GET['solde'] . "</li>");
+            echo ("<li>nom = " . ($nom ?? '') . "</li>");
+            echo ("<li>prenom = " . ($prenom ?? '') . "</li>");
+            echo ("<li>role = " . ($role ?? '') . "</li>");
+            echo ("<li>solde = " . ($solde ?? '') . "</li>");
             echo ("</ul>");
         }
 

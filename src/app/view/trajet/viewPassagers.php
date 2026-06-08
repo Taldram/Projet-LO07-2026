@@ -9,7 +9,7 @@ require ($root . '/app/view/fragment/fragmentHeader.html');
       include $root . '/app/view/fragment/fragmentJumbotron.html';
       ?>
 
-    <form role="form" method="get" action="router1.php" class="mb-4">
+    <form role="form" method="post" action="router1.php" class="mb-4">
       <input type="hidden" name="action" value="trajetReadPassagers">
       <div class="form-group">
         <label for="trajet_id" class="mt-3">Sélectionnez un trajet actif :</label><br><br>
