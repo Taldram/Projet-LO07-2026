@@ -139,6 +139,11 @@ class ModelReservation
             $P->execute(['passager_id' => intval($passager_id)]);
             $passager = $P->fetch(PDO::FETCH_ASSOC);
 
+            $queryNbPassagers = "SELECT COUNT(*) FROM reservation WHERE trajet_id = :trajet_id";
+            $N = $database->prepare($queryNbPassagers);
+            $N->execute(['trajet_id' => intval($trajet_id)]);
+            $nbPassagers = $N->fetchColumn();
+
             // Vérifications avant modifications
             if ($trajet === false) {
                 $database->rollBack();
@@ -155,6 +160,12 @@ class ModelReservation
             if ($passager['solde'] < $trajet['prix']) {
                 $database->rollBack();
                 $_SESSION['reservation_error'] = 'Fonds insuffisants.';
+                return -1;
+            }
+
+            if ($nbPassagers >= 4) {
+                $database->rollBack();
+                $_SESSION['reservation_error'] = 'Trajet complet.';
                 return -1;
             }
 
