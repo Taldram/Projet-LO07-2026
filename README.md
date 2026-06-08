@@ -39,7 +39,7 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 
 ### Une fois les fonctions faites
 
-- [ ] Tout passer en POST
+- [x] Tout passer en POST
 - [ ] Faire bcp trop de tests
 - [ ] Rendre le tout joli
 - [ ] Reset la BDD

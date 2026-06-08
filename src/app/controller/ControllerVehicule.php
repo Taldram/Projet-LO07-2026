@@ -47,16 +47,16 @@ class ControllerVehicule {
 
     public static function vehiculeCreated()
     {
-        $annee = intval($_GET['annee']);
+        $annee = intval($_POST['annee']) ?? '';
         if ($annee < 1900 || $annee > 2026){
             $results = -1;
         } else {
         $results = ModelVehicule::insert(
-            htmlspecialchars($_GET['marque']),
-            htmlspecialchars($_GET['modele']),
-            htmlspecialchars($_GET['annee']),
-            htmlspecialchars($_GET['immatriculation']),
-            htmlspecialchars($_GET['proprietaire']));
+            htmlspecialchars($_POST['marque']),
+            htmlspecialchars($_POST['modele']),
+            htmlspecialchars($_POST['annee']),
+            htmlspecialchars($_POST['immatriculation']),
+            htmlspecialchars($_POST['proprietaire']));
         }
         // ----- Construction chemin de la vue
         include 'config.php';

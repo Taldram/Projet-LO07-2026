@@ -68,7 +68,7 @@ class ControllerTrajet {
         }
 
         $trajets = ModelTrajet::getMineActifs($loginId);
-        $trajetId = isset($_GET['trajet_id']) ? intval($_GET['trajet_id']) : null;
+        $trajetId = isset($_POST['trajet_id']) ? intval($_POST['trajet_id']) : null;
         $results = [];
 
         if ($trajetId !== null && $trajetId > 0) {

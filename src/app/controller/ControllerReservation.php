@@ -43,7 +43,7 @@ class ControllerReservation
             require($vue);
             return;
         }
-        $trajet_id = $_GET['trajet_id'];
+        $trajet_id = $_POST['trajet_id'];
 
         $results = ModelReservation::insert($login, $trajet_id);
 

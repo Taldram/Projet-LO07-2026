@@ -36,11 +36,16 @@ class ControllerUtilisateur {
     public static function utilisateurCreated()
     {
         // ajouter une validation des informations du formulaire
+        $nom = isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : '';
+        $prenom = isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : '';
+        $role = isset($_POST['role']) ? htmlspecialchars($_POST['role']) : '';
+        $solde = isset($_POST['solde']) ? htmlspecialchars($_POST['solde']) : '';
+
         $results = ModelUtilisateur::insert(
-            htmlspecialchars($_GET['nom']),
-            htmlspecialchars($_GET['prenom']),
-            htmlspecialchars($_GET['role']),
-            htmlspecialchars($_GET['solde']));
+            $nom,
+            $prenom,
+            $role,
+            $solde);
         // ----- Construction chemin de la vue
         include 'config.php';
         if ($results == -1) {
