@@ -17,7 +17,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
     <form role="form" method="post" action="router1.php" class="mb-4">
       <input type="hidden" name="action" value="trajetReadPassagers">
       <div class="form-group">
-        <label for="trajet_id" class="mt-3">Sélectionnez un trajet actif :</label><br><br>
+        <label for="trajet_id" class="mt-3 fw-bold">Sélectionnez un trajet actif :</label><br><br>
         <select class="form-control" id="trajet_id" name="trajet_id" style="width: 450px" required>
           <option value="">-- Choisir un trajet --</option>
           <?php

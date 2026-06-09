@@ -19,7 +19,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
       <div class="form-group">
         <input type="hidden" name='action' value='reservationCreated'>
 
-        <label for="trajet_id" class="mt-3">Sélectionnez un trajet :</label>
+        <label for="trajet_id" class="mt-3 fw-bold">Sélectionnez un trajet :</label>
         <select class="form-control" id="trajet_id" name="trajet_id" style="width: 400px" required>
           <?php
           foreach ($trajets as $trajet) {

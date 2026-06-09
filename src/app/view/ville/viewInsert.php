@@ -17,11 +17,9 @@ require ($root . '/app/view/fragment/fragmentHeader.html');
 
     <form role="form" method='post' action='router1.php'>
       <div class="form-group">
-        <input type="hidden" name='action' value='villeCreated'>        
-        <label class='w-25' for="id">nom : </label><input type="text" name='nom' size='75' value=''> <br/>                                 
+        <input type="hidden" name='action' value='villeCreated' >        
+        <label class='w-25 fw-bold' for="id">Nom : </label><input type="text" name='nom' size='75' value='' class="form-control"> <br/>                                 
       </div>
-      <p/>
-       <br/> 
       <button class="btn btn-primary" type="submit">Ajouter la ville</button>
     </form>
     <p/>
