@@ -19,15 +19,15 @@ require($root . '/app/view/fragment/fragmentHeader.html');
       <div class="form-group">
         <input type="hidden" name='action' value='vehiculeCreated'><br />
 
-        <label class='w-25' for="marque" class="form-label">Marque : </label><input type="text" name='marque' size='75' value=''> <br />
+        <label class='w-25 fw-bold' for="marque">Marque : </label><input type="text" name='marque' size='75' value='' class="form-control"> <br />
 
-        <label class='w-25' for="modele" class="form-label">Modèle : </label><input type="text" name='modele' size='75' value=''> <br />
+        <label class='w-25 fw-bold' for="modele">Modèle : </label><input type="text" name='modele' size='75' value='' class="form-control"> <br />
 
-        <label class='w-25' for="annee" class="form-label">Année : </label><input type="number" name='annee' min='1900' max='2026' step="1" value=''> <br />
+        <label class='w-25 fw-bold' for="annee">Année : </label><input type="number" name='annee' min='1900' max='2026' step="1" value='' class="form-control"> <br />
 
-        <label class='w-25' for="immatriculation" class="form-label">Immatriculation : </label><input type="text" name='immatriculation' size='75' value=''> <br />
+        <label class='w-25 fw-bold' for="immatriculation">Immatriculation : </label><input type="text" name='immatriculation' size='75' value='' class="form-control"> <br />
 
-        <label for="proprietaire" class="mt-3">Sélectionnez un proprietaire :</label> <br> <br>
+        <label for="proprietaire" class="mt-3 fw-bold">Sélectionnez un proprietaire :</label> <br> <br>
         <select class="form-control" id="proprietaire" name="proprietaire" style="width: 400px" required>
           <?php
           foreach ($conducteurs as $cond) {
