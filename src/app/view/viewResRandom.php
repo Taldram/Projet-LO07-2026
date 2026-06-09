@@ -5,8 +5,8 @@
       include $root . '/app/view/fragment/fragmentMenu.php';
       include $root . '/app/view/fragment/fragmentJumbotron.html';
     ?>
-
-    <h3 style="color: red;">10 nouvelles réservations aléatoires</h3>
+    <h3>10 nouvelles réservations aléatoires</h3> 
+    <hr>
     
     <ol>
       <?php

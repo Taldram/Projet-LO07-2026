@@ -10,7 +10,7 @@ require($root . '/app/view/fragment/fragmentHeader.html'); ?>
         ?>
 
         <div class="mt-4">
-            <h3 class="text-primary">Variables Superglobales</h3>
+            <h3>Variables Superglobales</h3>
             <hr>
 
             <h4>Contenu de $_SESSION</h4>

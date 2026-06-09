@@ -5,9 +5,15 @@ require($root . '/app/view/fragment/fragmentHeader.html');
 <body>
   <div class="container">
     <?php
-      include $root . '/app/view/fragment/fragmentMenu.php';
-      include $root . '/app/view/fragment/fragmentJumbotron.html';
-    ?> 
+    include $root . '/app/view/fragment/fragmentMenu.php';
+    include $root . '/app/view/fragment/fragmentJumbotron.html';
+    ?>
+
+    <h3>
+      Ajout d'un véhicule
+    </h3>
+    <p class="lead">Veuillez remplir le formulaire ci-dessous.</p>
+    <hr>
 
     <form role="form" method='post' action='router1.php'>
       <div class="form-group">
@@ -25,18 +31,19 @@ require($root . '/app/view/fragment/fragmentHeader.html');
         <select class="form-control" id="proprietaire" name="proprietaire" style="width: 400px" required>
           <?php
           foreach ($conducteurs as $cond) {
-            printf("<option value='%d'>%s %s</option>", 
-            $cond->getId(), 
-            $cond->getNom(), 
-            $cond->getPrenom()
-        );
+            printf(
+              "<option value='%d'>%s %s</option>",
+              $cond->getId(),
+              $cond->getPrenom(),
+              $cond->getNom()
+            );
           }
           ?>
         </select>
       </div>
       <p />
       <br />
-      <button class="btn btn-primary" type="submit">Ajouter un véhicule</button>
+      <button class="btn btn-success" type="submit">Ajouter un véhicule</button>
     </form>
     <p />
   </div>

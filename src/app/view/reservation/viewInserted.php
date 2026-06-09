@@ -6,9 +6,9 @@
       include $root . '/app/view/fragment/fragmentJumbotron.html';
     ?>
     
-    <div class="alert alert-success" role="alert">
+    <div class="alert mt-4" role="alert">
         <p>La réservation a été effectuée avec succès ! </p> <br>
-        <a href="router1.php?action=reservationReadMine" class="btn btn-primary mt-3">Voir mes réservations</a>
+        <a href="router1.php?action=reservationReadMine" class="btn btn-success mt-3">Voir mes réservations</a>
     </div>
     
   </div>

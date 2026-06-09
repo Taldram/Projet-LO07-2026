@@ -1,13 +1,18 @@
 <?php
-require ($root . '/app/view/fragment/fragmentHeader.html');
+require($root . '/app/view/fragment/fragmentHeader.html');
 ?>
 
 <body>
   <div class="container">
-      <?php
-      include $root . '/app/view/fragment/fragmentMenu.php';
-      include $root . '/app/view/fragment/fragmentJumbotron.html';
-      ?>
+    <?php
+    include $root . '/app/view/fragment/fragmentMenu.php';
+    include $root . '/app/view/fragment/fragmentJumbotron.html';
+    ?>
+
+    <h3>
+        Affichage des passagers
+    </h3>
+    <hr>
 
     <form role="form" method="post" action="router1.php" class="mb-4">
       <input type="hidden" name="action" value="trajetReadPassagers">
@@ -33,11 +38,11 @@ require ($root . '/app/view/fragment/fragmentHeader.html');
         </select>
       </div>
       <p></p>
-      <button class="btn btn-primary" type="submit">Afficher les passagers</button>
+      <button class="btn btn-success" type="submit">Afficher les passagers</button>
     </form>
 
     <?php if (isset($trajetId) && $trajetId !== null && $trajetId > 0): ?>
-      <h4 class="mb-3">Passagers du trajet sélectionné</h4>
+      <h5 class="mb-3">Passagers du trajet sélectionné</h5>
       <table class="table table-striped table-bordered">
         <thead class="thead-dark">
           <tr>

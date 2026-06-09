@@ -8,7 +8,7 @@
         ?>
 
         <div class="alert mt-4 border-0">
-            <h2 class="alert-heading text-success">
+            <h2 class="alert-heading">
                 L'Éco-Compteur BlaBlaCar
             </h2>
             <p class="lead">Récompenser et visualiser l'impact écologique des utilisateurs.</p>
