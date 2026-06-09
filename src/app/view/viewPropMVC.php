@@ -7,8 +7,8 @@
         include $root . '/app/view/fragment/fragmentJumbotron.html';
         ?>
 
-        <div class="alert alert-info mt-4 shadow-sm border-0">
-            <h2 class="alert-heading text-info">
+        <div class="alert mt-4 border-0">
+            <h2 class="alert-heading">
                 Optimisation Globale de l'Architecture MVC
             </h2>
             <p class="lead">Réduire la redondance et simplifier la relecture.</p>
@@ -26,12 +26,12 @@
             <hr>
 
             <div class="row mt-4">
-                <h4 class="text-primary">1. Le "Base Controller"</h4>
+                <h4>1. Le "Base Controller"</h4>
                 <p>
                     L'idée est de créer une classe parente <code>Controller</code> possédant une méthode universelle <code>render()</code>. Tous les autres contrôleurs du projet en héritent. C'est le même principe que <code>getInstance()</code> qui est utilisée dans tous les modèles.
                 </p>
 
-                <h4 class="text-primary">2. Le "Layout Global"</h4>
+                <h4>2. Le "Layout Global"</h4>
                 <p>
                     Création d'un fichier <code>layout.php</code> unique contenant toute la structure de la page (HTML, Header, Footer). Les vues spécifiques n'injectent plus que leur contenu au centre.
                 </p>

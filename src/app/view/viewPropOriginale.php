@@ -7,7 +7,7 @@
         include $root . '/app/view/fragment/fragmentJumbotron.html';
         ?>
 
-        <div class="alert alert-success mt-4 shadow-sm border-0">
+        <div class="alert mt-4 border-0">
             <h2 class="alert-heading text-success">
                 L'Éco-Compteur BlaBlaCar
             </h2>
