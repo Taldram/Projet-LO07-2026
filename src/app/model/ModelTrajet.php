@@ -83,7 +83,7 @@ class ModelTrajet
                     where conducteur_id = :conducteur_id
                     and trajet.ville_depart = ville_depart.id
                     and trajet.ville_arrivee = ville_arrivee.id
-                    order by date_depart, heure_depart";
+                    order by statut, date_depart, heure_depart";
             $statement = $database->prepare($query);
             $statement->execute([
                 'conducteur_id' => $_SESSION['login_id']

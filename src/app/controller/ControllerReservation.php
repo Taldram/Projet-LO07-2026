@@ -1,6 +1,7 @@
 <?php
 
 require_once "../model/ModelReservation.php";
+require_once "../model/ModelTrajet.php";
 
 class ControllerReservation
 {
