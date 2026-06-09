@@ -32,7 +32,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
       </div>
       <p />
       <br />
-      <button class="btn btn-success" type="submit">Ajouter un <?php echo htmlspecialchars($role); ?></button>
+      <button class="btn btn-primary" type="submit">Ajouter un <?php echo htmlspecialchars($role); ?></button>
     </form>
     <p />
   </div>

@@ -19,7 +19,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
             <p><strong><?php echo htmlspecialchars($nombreReservations); ?></strong> réservation(s) traitée(s).</p>
             <p>Montant total reçu : <strong><?php echo htmlspecialchars(number_format($montantTotal, 2, ',', ' ')); ?> €</strong></p>
             <p>Nouveau solde : <strong><?php echo htmlspecialchars(number_format($nouveauSolde, 2, ',', ' ')); ?> €</strong></p>
-            <a href="router1.php?action=trajetReadMine" class="btn btn-success mt-3">Voir mes trajets</a>
+            <a href="router1.php?action=trajetReadMine" class="btn btn-primary mt-3">Voir mes trajets</a>
         </div>
     </div>
     <?php include $root . '/app/view/fragment/fragmentFooter.html'; ?>

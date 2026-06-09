@@ -38,7 +38,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
         </select>
       </div>
       <p></p>
-      <button class="btn btn-success" type="submit">Afficher les passagers</button>
+      <button class="btn btn-primary" type="submit">Afficher les passagers</button>
     </form>
 
     <?php if (isset($trajetId) && $trajetId !== null && $trajetId > 0): ?>

@@ -57,7 +57,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
       </div>
       <p />
       <br />
-      <button class="btn btn-success" type="submit">Ajouter un trajet</button>
+      <button class="btn btn-primary" type="submit">Ajouter un trajet</button>
     </form>
     <p />
   </div>

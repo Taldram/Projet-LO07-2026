@@ -20,6 +20,8 @@ require($root . '/app/view/fragment/fragmentHeader.html');
             echo ("</ul>");
         }
 
+        echo ("<p><a href='router1.php?action=vehiculeReadAll' class='btn btn-primary'>Voir tous les véhicules</a></p>");
+
         echo ("</div>");
 
         include $root . '/app/view/fragment/fragmentFooter.html';

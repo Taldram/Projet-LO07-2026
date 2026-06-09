@@ -36,7 +36,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
       </div>
       <p />
       <br />
-      <button class="btn btn-success" type="submit">Confirmer la réservation</button>
+      <button class="btn btn-primary" type="submit">Confirmer la réservation</button>
     </form>
     <p />
   </div>

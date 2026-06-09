@@ -18,6 +18,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
             echo ("</ul>");
         }
         ?>
+        <a href="router1.php?action=villeReadAll" class="btn btn-primary mt-3">Voir les villes</a>
     </div>
       <?php include $root . '/app/view/fragment/fragmentFooter.html'; ?>
 </body>

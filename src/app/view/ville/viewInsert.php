@@ -22,7 +22,7 @@ require ($root . '/app/view/fragment/fragmentHeader.html');
       </div>
       <p/>
        <br/> 
-      <button class="btn btn-success" type="submit">Ajouter la ville</button>
+      <button class="btn btn-primary" type="submit">Ajouter la ville</button>
     </form>
     <p/>
   </div>

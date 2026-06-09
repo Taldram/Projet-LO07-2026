@@ -16,7 +16,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
             <h2>Trajet créé avec succès !</h2>
             <hr>
             <p>Le trajet <strong>ID : <?php echo htmlspecialchars($trajetId); ?></strong> a été ajouté à la base de données.</p>
-            <a href="router1.php?action=trajetReadMine" class="btn btn-success mt-3">Voir mes trajets</a>
+            <a href="router1.php?action=trajetReadMine" class="btn btn-primary mt-3">Voir mes trajets</a>
         </div>
     </div>
     <?php include $root . '/app/view/fragment/fragmentFooter.html'; ?>
