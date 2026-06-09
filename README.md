@@ -1,10 +1,9 @@
 # Projet-LO07-2026
 Camille BAUDY </br>
 Pierre LENICOLAIS</br>
-URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
+URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/src/
 
 ## Roadmap ([Consignes](consignes.pdf))
-
 
 ### Les fonctions de l’administrateur
 
@@ -36,11 +35,3 @@ URL Projet : http://dev-isi.utt.fr/~baudycam/lo07_tds/Projet-LO07-2026/
 - [x] SuperGlobales @Taldram
 - [x] Réservations aléatoires @Taldram
 - [x] Les fonctions de connexion @Pierrelncls
-
-### Une fois les fonctions faites
-
-- [x] Tout passer en POST
-- [ ] Faire bcp trop de tests
-- [ ] Rendre le tout joli
-- [ ] Reset la BDD
-- [ ] La présentation
