@@ -8,23 +8,25 @@ $Conducteur = $loginRole === 'conducteur';
 $Passager = $loginRole === 'passager';
 ?>
 
-<nav class="navbar navbar-expand-lg bg-success fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm navbar-dark" style="background-color: #0075a3;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="router1.php?action=Accueil">BAUDY & LENICOLAIS</a>
+    <a class="navbar-brand fw-bold fs-4" href="router1.php?action=Accueil">BAUDY & LENICOLAIS</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <?php if ($Admin || $Conducteur || $Passager): ?>
-    <span class="navbar-brand">| <?php echo htmlspecialchars($loginNom);?></span>
-    <span class="navbar-brand">| <?php echo number_format($loginSolde, 2, ',', ' '); ?> € |</span>
+    <span class="navbar-text text-white me-3 fw-semibold">
+  <i class="bi bi-person-circle"></i> <?php echo htmlspecialchars($loginNom); ?>
+</span>
+<span class="badge bg-light text-primary rounded-pill fs-6 my-auto me-4">
+  <?php echo number_format($loginSolde, 2, ',', ' '); ?> €
+</span>
     <?php endif; ?>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-    
-
+      <ul class="navbar-nav mb-2 mb-lg-0 w-100">
         <?php if ($Admin): ?>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown me-4">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrateur</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="router1.php?action=utilisateurReadAll">Liste des utilisateurs</a></li>
@@ -41,7 +43,7 @@ $Passager = $loginRole === 'passager';
         <?php endif; ?>
 
         <?php if ($Conducteur): ?>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown me-4">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Conducteur</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="router1.php?action=vehiculeReadMine">Liste de mes véhicules</a></li>
@@ -56,7 +58,7 @@ $Passager = $loginRole === 'passager';
         <?php endif; ?>
 
         <?php if ($Passager): ?>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown me-4">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Passager</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="router1.php?action=reservationReadMine">Liste de mes réservations</a></li>
@@ -65,7 +67,7 @@ $Passager = $loginRole === 'passager';
         </li>
         <?php endif; ?>
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown me-4">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Innovations</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="router1.php?action=innovationOriginale">Proposez une fonctionnalité originale</a></li>
@@ -73,7 +75,7 @@ $Passager = $loginRole === 'passager';
           </ul>
         </li>
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown me-4">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Examinateur</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="router1.php?action=examinateurSuperGlobales">SuperGlobales (Cookies et Session)</a></li>
@@ -81,9 +83,9 @@ $Passager = $loginRole === 'passager';
           </ul>
         </li>
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown ms-auto">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Se connecter </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" href="router1.php?action=utilisateurLogin">Login</a></li>
             <li><a class="dropdown-item" href="router1.php?action=utilisateurLogout">Déconnexion</a></li>
           </ul>
